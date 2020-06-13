@@ -11,6 +11,7 @@ type MetricsProvider struct {
 	APIToken       *string `json:"api_token,omitempty"`
 	ApplicationKey *string `json:"application_key,omitempty"`
 	Type           *string `json:"type,omitempty"`
+	MetricBaseURI  *string `json:"metric_base_uri,omitempty"`
 }
 
 type MetricsProviderFull struct {
@@ -60,6 +61,9 @@ func (mp *MetricsProvider) validate() error {
 		}
 		if *mp.ApplicationKey == "" {
 			return fmt.Errorf("parameter application_key is required for Datadog Metrics Provider")
+		}
+		if *mp.MetricBaseURI == "" {
+			return fmt.Errorf("parameter MetricBaseUri is required for Datadog Metrics provider")
 		}
 	}
 

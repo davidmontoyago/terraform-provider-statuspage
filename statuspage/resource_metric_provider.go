@@ -16,6 +16,7 @@ func resourceMetricsProviderCreate(d *schema.ResourceData, m interface{}) error 
 	aPIToken := d.Get("api_token").(string)
 	applicationKey := d.Get("application_key").(string)
 	t := d.Get("type").(string)
+	metricBaseURI := d.Get("metric_base_uri").(string)
 
 	mp, err := sp.CreateMetricsProvider(
 		client,
@@ -27,6 +28,7 @@ func resourceMetricsProviderCreate(d *schema.ResourceData, m interface{}) error 
 			APIToken:       &aPIToken,
 			ApplicationKey: &applicationKey,
 			Type:           &t,
+			MetricBaseURI:  &metricBaseURI,
 		},
 	)
 	if err != nil {
@@ -72,6 +74,7 @@ func resourceMetricsProviderUpdate(d *schema.ResourceData, m interface{}) error 
 	aPIToken := d.Get("api_token").(string)
 	applicationKey := d.Get("application_key").(string)
 	t := d.Get("type").(string)
+	metricBaseURI := d.Get("metric_base_uri").(string)
 
 	_, err := sp.UpdateMetricsProvider(
 		client,
@@ -84,6 +87,7 @@ func resourceMetricsProviderUpdate(d *schema.ResourceData, m interface{}) error 
 			APIToken:       &aPIToken,
 			ApplicationKey: &applicationKey,
 			Type:           &t,
+			MetricBaseURI:  &metricBaseURI,
 		},
 	)
 	if err != nil {
@@ -137,6 +141,11 @@ func resourceMetricsProvider() *schema.Resource {
 			"application_key": &schema.Schema{
 				Type:        schema.TypeString,
 				Description: "Required by the Pingdom-type metrics provider",
+				Optional:    true,
+			},
+			"metric_base_uri": &schema.Schema{
+				Type:        schema.TypeString,
+				Description: "Required by the Datadog type metrics provider",
 				Optional:    true,
 			},
 			"type": &schema.Schema{
