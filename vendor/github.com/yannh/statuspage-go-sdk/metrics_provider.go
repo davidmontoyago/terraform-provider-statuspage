@@ -38,11 +38,8 @@ func (mp *MetricsProvider) validate() error {
 		if *mp.Email == "" {
 			return fmt.Errorf("parameter email is required for Pingdom Metrics Provider")
 		}
-		if *mp.Password == "" {
-			return fmt.Errorf("parameter password is required for Pingdom Metrics Provider")
-		}
-		if *mp.ApplicationKey == "" {
-			return fmt.Errorf("parameter application_key is required for Pingdom Metrics Provider")
+		if *mp.APIToken == "" {
+			return fmt.Errorf("parameter api_token is required for Pingdom Metrics Provider")
 		}
 	case "NewRelic":
 		if *mp.APIKey == "" {
