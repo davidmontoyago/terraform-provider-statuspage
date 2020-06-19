@@ -162,9 +162,9 @@ func resourceMetric() *schema.Resource {
 			"transform": &schema.Schema{
 				Type:        schema.TypeString,
 				Optional:    true,
-				Description: "The transform to apply to metric before pulling into Statuspage. One of: 'average', 'count', 'max', 'min', or 'sum'",
+				Description: "The transform to apply to metric before pulling into Statuspage. For Datadog must be one of: 'average', 'count', 'max', 'min', or 'sum'. For Pingdom must be one of: 'response_time', 'uptime'",
 				ValidateFunc: validation.StringInSlice(
-					[]string{"average", "count", "max", "min", "sum"},
+					[]string{"average", "count", "max", "min", "sum", "response_time", "uptime"},
 					false,
 				),
 			},
